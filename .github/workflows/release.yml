@@ -1,0 +1,46 @@
+name: Release
+
+# Building the exe is what makes a release: the tag is pushed, this builds it
+# on a clean Windows runner, and the zip is attached to the release. That is
+# also the answer to "where did this binary come from" -- the run is public.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build Windows x64
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # build.ps1 runs the whole test suite before it packages anything, so a
+      # failing test stops the release rather than shipping past it.
+      - name: Build
+        run: powershell -ExecutionPolicy Bypass -File .\build.ps1 -NoPause
+
+      - name: Upload the zip as a run artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeyPulse-Windows-x64
+          path: release/*.zip
+
+      - name: Attach the zip to the release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*.zip
+          generate_release_notes: true

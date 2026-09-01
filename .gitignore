@@ -1,0 +1,32 @@
+# Build output
+build/
+dist/
+*.spec.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# KeyPulse runtime data -- these are the user's own counts, never the repo's.
+# KeyPulse writes them beside the program, which during development is this
+# very folder, so they must stay out of every commit.
+stats.json
+settings.json
+snapshots/
+.keypulse-*.tmp
+.stats-*.tmp
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+
+# Build output from build.ps1
+release/

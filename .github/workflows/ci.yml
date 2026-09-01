@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Tests (Python ${{ matrix.python }})
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # Each suite sets QT_QPA_PLATFORM=offscreen for itself, so no display
+      # is needed. They are listed rather than discovered so a suite that
+      # stops being collected fails the build instead of quietly vanishing.
+      - name: Run tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        run: |
+          python tests\test_core.py
+          python tests\test_lighting.py
+          python tests\test_gallery.py
+          python tests\test_i18n.py

@@ -1,0 +1,19 @@
+# Normalise to LF in the repository; check out native on Windows.
+* text=auto
+
+# PowerShell is happiest with CRLF on disk, and Windows PowerShell 5.1 can
+# choke on a script with a lone LF before a here-string terminator.
+*.ps1 text eol=crlf
+
+# The user guide is read in Notepad on Windows as often as on GitHub.
+*.txt text eol=crlf
+
+# Anything below is binary; never touch its bytes.
+*.png binary
+*.ico binary
+*.zip binary
+*.exe binary
+
+# Keep the wall of vendored-looking data out of language statistics: the pad
+# outlines are generated coordinates, not hand-written code.
+pad_reference.py linguist-generated=true

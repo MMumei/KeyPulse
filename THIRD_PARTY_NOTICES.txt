@@ -1,0 +1,59 @@
+KeyPulse -- Third-party notices
+===============================
+
+KeyPulse itself is released under the MIT License; see LICENSE.
+
+It is written in Python and built with PySide6/Qt and PyInstaller. The
+released KeyPulse.exe is a PyInstaller one-file bundle and therefore carries
+copies of all three.
+
+
+Python
+------
+Python Software Foundation License.
+https://docs.python.org/3/license.html
+
+
+Qt for Python (PySide6) and Qt
+------------------------------
+Used under the GNU Lesser General Public License version 3 (LGPLv3).
+https://www.qt.io/licensing/open-source-lgpl-obligations
+https://www.gnu.org/licenses/lgpl-3.0.html
+
+KeyPulse links against PySide6/Qt dynamically and does not modify it. The
+LGPL requires that a recipient of the binary be able to replace the Qt used
+by it. That is satisfied as follows:
+
+  1. The complete source of KeyPulse is published at the repository this file
+     came from, under the MIT License.
+  2. The exact build recipe is in build.ps1 and KeyPulseOnefile.spec, and the
+     exact dependency versions are pinned in requirements.txt.
+  3. Anyone may install a different PySide6/Qt build, re-run build.ps1, and
+     obtain a KeyPulse.exe linked against their own copy.
+
+If you redistribute the binary, ship this file and a copy of the LGPLv3 text
+with it, or point recipients at the repository.
+
+
+PyInstaller
+-----------
+GPL 2.0 with an exception that permits bundled applications to use any
+license. KeyPulse uses only the bootloader and the packaging tool; no
+PyInstaller source is incorporated into KeyPulse's own code.
+https://pyinstaller.org/en/stable/license.html
+
+
+Trademarks and controller likenesses
+------------------------------------
+"Xbox" is a trademark of Microsoft Corporation. "PlayStation" and
+"DualSense" are trademarks of Sony Interactive Entertainment Inc. "Nintendo
+Switch" and "Switch Pro Controller" are trademarks of Nintendo Co., Ltd.
+
+KeyPulse is not affiliated with, endorsed by, or sponsored by any of them.
+Those names appear in the interface only to identify which controller layout
+you are looking at -- nominative use.
+
+The controllers are drawn at runtime from numeric outlines stored in
+pad_reference.py and gamepads.py and painted with QPainter. No manufacturer's
+photograph, artwork, icon font, firmware, or any other asset is included in
+this repository or in the released binary.

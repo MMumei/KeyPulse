@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest something KeyPulse should do
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The problem first, not the solution. It usually suggests one.
+    validations:
+      required: true
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: What you have in mind
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy
+      description: >
+        KeyPulse stores one count per key and never the order keys were pressed
+        in. Features that would need more than that are not going to be added.
+      options:
+        - label: This does not need KeyPulse to record anything beyond per-key counts
+          required: true
