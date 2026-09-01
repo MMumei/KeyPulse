@@ -3,5 +3,5 @@ contact_links:
   # NOTE: replace OWNER/REPO below with this repository's real path. GitHub
   # requires an absolute URL here, so it cannot be written relatively.
   - name: Security vulnerability
-    url: https://github.com/OWNER/REPO/security/advisories/new
+    url: https://github.com/MMumei/KeyPulse/security/advisories/new
     about: Please report security issues privately, not as a public issue.
